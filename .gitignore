@@ -346,3 +346,4 @@ AMENT_IGNORE
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,ros2,macos,python,pycharm+all
 .vscode/
 .idea/**
+qwen3-finetune/**
