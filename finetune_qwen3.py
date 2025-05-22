@@ -8,8 +8,20 @@ MODEL_NAME = "Qwen/Qwen3-0.6B"  # Replace with the exact model name, e.g., "Qwen
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, trust_remote_code=True)
 
+# combine all .jsonl files in data/
+data_dir = "data"
+data_files = [os.path.join(data_dir, f) for f in os.listdir(data_dir) if f.endswith(".jsonl")]
+# Combine all .jsonl files into one
+combined_file = os.path.join(data_dir, "combined_dataset.jsonl")
+with open(combined_file, "w") as outfile:
+    for fname in data_files:
+        with open(fname) as infile:
+            for line in infile:
+                outfile.write(line)
+
+
 # Load your data
-dataset = load_dataset("json", data_files={"train": "data/voice_command_dataset.jsonl"})
+dataset = load_dataset("json", data_files={"train": "data/combined_dataset.jsonl"})
 
 def make_qwen_chat_prompt(example):
     # Bilde Prompt im Qwen2-Chat Stil (siehe oben)
