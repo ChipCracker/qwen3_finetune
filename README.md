@@ -49,3 +49,14 @@ You are a helpful assistant.<|im_end|>
 * For longer commands or richer conversations, adjust `max_length` accordingly.
 * Use `fp16` or `bf16` if your hardware supports it.
 * For larger data or longer training, adjust `save_steps`, `logging_steps`, and \`eval\_steps
+
+## Training with Unsloth 4bit
+
+Run the provided `finetune_unsloth_qwen3.py` script to finetune Qwen3 using Unsloth's 4bit quantization. The script loads all JSONL files in the `data` directory, formats them with the Qwen chat template and performs LoRA finetuning in 4bit precision.
+
+```bash
+python finetune_unsloth_qwen3.py
+```
+
+The resulting adapters are stored in the `lora_model` directory.
+
